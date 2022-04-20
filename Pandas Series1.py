@@ -159,3 +159,99 @@ result=nr[nr.isin(nr.value_counts().index[:1])]="other"
 print(nr)
 
 
+#21. Write a Pandas program to find the positions of numbers that are multiples of 5 of a given series.
+import pandas as pd
+
+nr_series=pd.Series(np.random.randint(1,15,10))
+print(nr_series)
+multiple=np.where(nr_series % 5==0)
+print(multiple)
+
+#22. Write a Pandas program to extract items at given positions of a given series.
+nr_series=pd.Series(np.random.randint(1,14,10))
+print(nr_series)
+pos=nr_series[0:4]
+print(pos)
+index=[1,2,3]
+result = nr_series.take(index)
+print(result)
+
+
+#23. Write a Pandas program to get the positions of items of a given series in another given series.
+
+series2=pd.Series([5,6,4,7,5,6])
+#result=[pd.Index(series1).get_loc(s) for s in series2]
+#print(result)
+
+#24. Write a Pandas program convert the first and last character of each word to upper case in each word of a given series.
+series=pd.Series(["python", "sql","matlab"])
+upp=series.map(lambda x: x[0].upper()+x[1:-1]+ x[-1].upper())
+print(upp)
+
+series=pd.Series(["python", "sql","matlab"]) # just the first chr
+upp1=series.map(lambda x: x[0].upper()+x[1:-1]+x[-1])
+print(upp1)
+
+
+#25. Write a Pandas program to calculate the number of characters in each word in a given series.
+series=pd.Series(["python", "sql","matlab"])
+chr1=series.str.len()
+print(chr1)
+
+
+#26. Write a Pandas program to compute difference of differences between consecutive numbers of a given series.
+series3=pd.Series([2,6,7,8,10,12])
+print(series3)
+
+print(series3.diff().tolist())
+print(series3.diff().diff().tolist())
+
+#27. Write a Pandas program to convert a series of date strings to a timeseries.
+time=pd.Series(["01 Jan 2015","10-02-2016","20180307","2014/05/06","2016-04-12"])
+time1=pd.to_datetime(time)
+print(time1)
+
+#28. Write a Pandas program to get the day of month, day of year, week number and day of week from a given series of date strings.
+from dateutil.parser import parse
+date_series=pd.Series(["01 Jan 2015","10-02-2016","20180307","2014/05/06","2016-04-12"])
+date_series = time.map(lambda x: parse(x))
+print(date_series)
+print(date_series.dt.day.tolist())
+print(date_series.dt.dayofyear.tolist())
+#print(date_series.dt.weekday_name.tolist())
+
+#29. Write a Pandas program to convert year-month string to dates adding a specified day of the month.
+
+date1 = pd.Series(['Jan 2019', 'Feb 2020', 'Mar 2021', 'Apr 2022'])
+final_date = date1.map(lambda d: parse('15 ' + d))
+print(final_date)
+
+#31. Write a Pandas program to compute the Euclidean distance between two given series.
+import numpy as np
+series4=pd.Series([2,6,7,8,10,12])
+series5=pd.Series([5,6,4,7,5,6])
+dist=np.linalg.norm(series4-series5)
+print(dist)
+
+
+#32. Write a Pandas program to find the positions of the values neighboured by smaller values on both sides in a given series.
+import numpy as np
+nums = pd.Series([1, 8, 7, 5, 6, 5, 3, 4, 7, 1])
+temp = np.diff(np.sign(np.diff(nums)))
+result = np.where(temp == -2)[0] + 1
+print(result)
+
+
+#33. Write a Pandas program to replace missing white spaces in a given string with the least frequent char.
+
+str1 = 'abc def abcdef icd'
+print("Original series:")
+print(str1)
+ser = pd.Series(list(str1))
+element_freq = ser.value_counts()
+print(element_freq)
+current_freq = element_freq.dropna().index[-1]
+result = "".join(ser.replace(' ', current_freq))
+print(result)
+
+
