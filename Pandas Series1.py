@@ -254,4 +254,66 @@ current_freq = element_freq.dropna().index[-1]
 result = "".join(ser.replace(' ', current_freq))
 print(result)
 
+34. Write a Pandas program to compute the autocorrelations of a given numeric series.
+
+number = pd.Series(np.arange(17) + np.random.normal(1, 14, 17))
+print(number)
+autocorr1 = [number.autocorr(i).round(2) for i in range(15)]
+print(autocorr1[1:])
+
+#35. Write a Pandas program to create a TimeSeries to display all the Sundays of given year.
+timeseries=pd.Series(pd.date_range('2020-01-01',periods=52,freq="W-MON"))
+print(timeseries)
+
+#36. Write a Pandas program to convert given series into a dataframe with its index as another column on the dataframe.
+char=list('ABCDRFSTFGG')
+arrange=np.arange(9)
+dict=dict(zip(char,arrange))
+ser=pd.Series(dict)
+datframe=ser.to_frame().reset_index()
+print(datframe)
+
+
+#37. Write a Pandas program to stack two given series vertically and horizontally.
+nums1=pd.Series([1, 8, 7, 5, 6, 5, 3, 4, 7, 1]) #horizontally
+char1=pd.Series(['a','v','b','c','d','r','g','h','y','f'])
+df=pd.concat([nums1,char1],axis=1)
+print(df)
+
+nums1=pd.Series([1, 8, 7, 5, 6, 5, 3, 4, 7, 1]) # vertically
+char1=pd.Series(['a','v','b','c','d','r','g','h','y','f'])
+df=pd.concat([nums1,char1],axis=0)
+print(df)
+
+#38. Write a Pandas program to check the equality of two given series.
+nums2=pd.Series([1, 8, 7, 5, 6, 5, 3, 4, 7, 1])
+nums3=pd.Series([1, 8, 7, 5, 6, 5, 5, 4, 8, 1])
+eq=pd.Series.equals(nums2,nums3)
+print(eq)
+ #OR
+nums2=pd.Series([1, 8, 7, 5, 6, 5, 3, 4, 7, 1])
+nums3=pd.Series([1, 8, 7, 5, 6, 5, 5, 4, 8, 1])
+print(nums2==nums3)
+
+
+#39. Write a Pandas program to find the index of the first occurrence of the smallest and largest value of a given series.
+nums2=pd.Series([1, 8, 7, 5, 6, 5, 3, 4, 7, 1])
+print(nums2.idxmax())
+print(nums2.idxmin())
+
+nums2=pd.Series([100, 200, 500, 200, 5, 3])
+dict1 =pd.DataFrame({'Nan': [100], 'b': [200], 'c': [300], 'd': [500], 'e': [800]})
+
+#40. Write a Pandas program to check inequality over the index axis of a given dataframe and a given series.
+
+print(type(nums2))
+print(type(dict1))
+print(dict1.ne(nums2, axis = 0))
+print(nums2)
+print(dict1)
+
+
+
+
+
 
