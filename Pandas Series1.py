@@ -254,7 +254,7 @@ current_freq = element_freq.dropna().index[-1]
 result = "".join(ser.replace(' ', current_freq))
 print(result)
 
-34. Write a Pandas program to compute the autocorrelations of a given numeric series.
+#34. Write a Pandas program to compute the autocorrelations of a given numeric series.
 
 number = pd.Series(np.arange(17) + np.random.normal(1, 14, 17))
 print(number)
