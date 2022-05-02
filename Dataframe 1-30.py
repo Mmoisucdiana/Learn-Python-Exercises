@@ -73,3 +73,79 @@ print(exam)
 xam.sort_values(by=["name","score"],ascending=[False,True])
 print(exam)
 
+#17. Write a Pandas program to replace the 'qualify' column contains the values 'yes' and 'no' with True and False
+
+exam['qualify']=exam['qualify'].map({'yes':True,'no':False})
+print(exam)
+
+
+#18. Write a Pandas program to change the name 'James' to 'Suresh' in name column of the DataFrame.
+exam['name']=exam['name'].replace('James','Suresh')
+print(exam)
+
+#19. Write a Pandas program to delete the 'attempts' column from the DataFrame.
+exam['name']=exam.pop('attempts')
+print(exam)
+
+#20. Write a Pandas program to insert a new column in existing DataFrame.
+color=['red','blue','green','black','yellow','grey','white','blue','grey','black']
+
+exam["color"]=color
+print(exam)
+
+
+
+#21. Write a Pandas program to iterate over rows in a DataFrame.
+exam_data = [{'name':'Anastasia', 'score':12.5}, {'name':'Dima','score':9}, {'name':'Katherine','score':16.5}]
+exam1=pd.DataFrame(exam_data)
+print(exam1)
+
+for index,row in exam1.iterrows():
+    print(row['name'],row['score'])
+
+#22. Write a Pandas program to get list from DataFrame column headers.
+print(list(exam.columns.values))
+
+#23. Write a Pandas program to rename columns of a given DataFrame
+exam.rename(columns={'name':'names'},inplace=True)
+print(exam)
+
+#24. Write a Pandas program to select rows from a given DataFrame based on values in some columns.
+print(exam.loc[(exam["score"]==12.5) & (exam["color"]=='red')])
+
+#25. Write a Pandas program to change the order of a DataFrame columns.
+exam=exam[['names','color','score','qualify']]
+print(exam)
+
+#26. Write a Pandas program to add one row in an existing DataFrame.
+new = {'names':2,'color':'blue','score': 20.7,'qualify':'True'}
+exam=exam.append(new, ignore_index=True)
+print(exam)
+
+#27. Write a Pandas program to write a DataFrame to CSV file using tab separator.
+
+exam.to_csv('new_exam-file.csv', sep='\t', index=False)
+new_exam = pd.read_csv('new_exam-file.csv')
+print(new_exam)
+
+#28. Write a Pandas program to count city wise number of people from a given of data set (city, name of the person).
+city_data =pd.DataFrame({'name': ['Anastasia', 'Dima', 'Katherine', 'James', 'Emily','Anne'],
+             'city': ['California','Georgia','Los Angeles','California','Georgia','Georgia']})
+labels = ['a', 'b', 'c', 'd', 'e', 'f']
+print(city_data)
+
+cityy = city_data.groupby(["city"]).size().reset_index(name='Count of people')
+print(cityy)
+
+#29. Write a Pandas program to delete DataFrame row(s) based on given column value.
+exam = exam[exam.color != 'red']
+print(exam)
+
+#30. Write a Pandas program to widen output display to see more columns.
+print(exam.head())
+pd.set_option('display.max_rows', 500)
+print(city_data)
+
+
+
+
